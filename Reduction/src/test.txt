@@ -1,0 +1,1 @@
+x ^ (y v z) ^ (c v z v b) ^ z
