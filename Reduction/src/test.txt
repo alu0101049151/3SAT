@@ -1,1 +1,1 @@
-x ^ (y v z) ^ (c v z v b) ^ z
+x ^ (y v z) ^ (c v z v b) ^ (x v c v z v b v f v o)

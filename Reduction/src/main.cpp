@@ -7,7 +7,9 @@ int main(int argc, char *argv[])
   if (argc == ARG_REQUIRED)
   {
     Sat sat(argv[1]);
-    std::cout << sat;
+    std::cout << sat << std::endl;
+    Sat *a = sat.to3Sat();
+    a -> print(std::cout);
   }
   else
   {
