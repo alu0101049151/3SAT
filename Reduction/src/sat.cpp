@@ -1,15 +1,19 @@
 #include "sat.h"
+#include <sstream>
+#include <algorithm>
 
 const char OR = 'v';
 const char AND = '^';
 const char PARENTH_OPEN = '(';
 const char PARENTH_CLOSE = ')';
+const char SPACE = ' ';
 
 Sat::Sat(std::string filename)
 {
   reader(filename);
 }
 
+/*
 void Sat::reader(std::string filename)
 {
   std::ifstream file_instance(filename);
@@ -56,6 +60,30 @@ std::vector<std::string> Sat::removeDisjunction(std::string clause)
   }
   tokenizedClause.push_back(aux);
   return tokenizedClause;
+}
+*/
+
+void Sat::reader(std::string filename)
+{
+  std::ifstream file_instance(filename);
+  std::vector<std::string> clause;
+  std::string parsed, parsed2, input;
+  if (file_instance.is_open())
+  {
+    getline(file_instance, input);
+    input.erase(std::remove(input.begin(), input.end(), PARENTH_OPEN), input.end());
+    input.erase(std::remove(input.begin(), input.end(), PARENTH_CLOSE), input.end());
+    input.erase(std::remove(input.begin(), input.end(), SPACE), input.end());
+    std::stringstream ss(input);
+    while (getline(ss, parsed, AND))
+    {
+      std::stringstream ss2(parsed);
+      while (getline(ss2, parsed2, OR))
+        clause.push_back(parsed2);
+      clauses_.push_back(clause);
+      clause.clear();
+    }
+  }
 }
 
 std::ostream &operator<<(std::ostream &os, Sat sat)
