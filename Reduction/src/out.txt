@@ -1,0 +1,1 @@
+(x v z1 v z2) ^ (x v z1 v !z2) ^ (x v !z1 v z2) ^ (x v !z1 v !z2) ^ (y v z v z3) ^ (y v z v !z3) ^ (c v z v b) ^ (x v c v z4) ^ (z v !z4 v z5) ^ (b v !z5 v z6) ^ (f v o v !z6)

@@ -35,12 +35,22 @@ std::string Sat::cleanUpString(std::string input) {
 }
 
 std::ostream &Sat::print(std::ostream &os) {
-  for (auto clause : getClauses()) {
-    for (auto member : clause) {
-      os << member << " ";
+  for (int clause = 0; clause < getClauses().size() - 1; clause++){
+    os << "(";
+    for (int member = 0; member < getClauses()[clause].size() - 1; member++) {
+      os << getClauses()[clause][member] << " v ";
     }
-    os << "\n";
+    os << getClauses()[clause][getClauses()[clause].size() - 1];
+    os << ") ^ ";
   }
+  os << "(";
+  std::vector<std::string> lastClause = getClauses()[getClauses().size() - 1];
+  for(int member = 0; member < lastClause.size() - 1; member++) {
+      os << lastClause[member] << " v ";
+  }
+
+  os << lastClause[lastClause.size() - 1];
+  os << ")\n";
   return os;
 }
 
